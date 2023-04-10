@@ -1,42 +1,28 @@
-# Hello World with React boilerplate
+<!--hide-->
+# React TODO application
+<!--hide-->
 
-Start coding a react application
+<p align="center">
+  <img height="200" src="https://github.com/breatheco-de/exercise-todo-list/blob/master/preview.gif?raw=true" />
+</p>
 
-> If you are working locally instead of using codespaces or gitpod, please follow [local installation steps](#local-installation-skip-if-you-are-working-on-codespaces-or-gitpod) and come back to this part of the readme.
+Create a TODO list application that allows users to add and delete tasks.
 
-## How to start coding?
+## 📝 Instructions
 
-- Install the packages with `$ npm install`.
-- Run the webpack server with `$ npm run start`
+- You app needs to look [like this](https://github.com/breatheco-de/exercise-todo-list/blob/master/preview.gif?raw=true).
+- The tasks are added when the user press enter on the keyboard, or you can have your own button.
+- The delete icon shows only when the task is hovered.
+- The user can add as many tasks as he/she wants.
+- When there are no tasks the list should say "No tasks, add a task"
+- There is no way to update a task, the user will have to delete and create again.
 
-You can update the `styles/index.css` or `js/index.js` depending on your needs.
-Add more files into your, `./src/js/components` or styles folder as you need them.
+## 💡 Tips to finish this project
 
-## Local Installation (skip if you are working on codespaces or gitpod)
+Do not go straight to the code, think first and have a viable strategy.
 
-Download the boilerplate using git
+- What components will you create? Draw the project on white paper and identify components.
+- Where are the tasks going to be stored in your component?
+- Read about [controlled components inputs in react.js](https://www.youtube.com/watch?v=A6YxkyR_T8c), you will need to understand the concept.
 
-```
-$ git clone https://github.com/4GeeksAcademy/react-hello.git
-$ cd react-hello
-```
-
-## Publish your website!
-
-This boilerplate is 100% compatible with the free [github pages](https://pages.github.com/) and [vercel](https://vercel.com/) hosting.
-
-It takes just 2 minutes to deploy, [click here to start the process](https://github.com/4GeeksAcademy/react-hello/blob/master/docs/DEPLOY.md).
-
-## Other features
-
-- Automatic Code Formatting: Use of [Prettier](https://prettier.io/) for automatic code indentation and formatting.
-- Error reporting: Use of [eslint](https://eslint.org/) for better error reporting.
-- Hot Deploy: Use of [Webpack Development Server](https://webpack.js.org/configuration/dev-server/) for hot deploy and live reload.
-- One-command publish of the code to github pages with `npm run deploy:github`.
-- Babel 7 (really fast).
-
-### Contributors
-
-This template was built as part of the 4Geeks Academy [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about our [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
-
-You can find other templates and resources like this at the [school github page](https://github.com/4geeksacademy/).
+This and many other projects are built by students as part of the 4Geeks Academy [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about our [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
