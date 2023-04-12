@@ -1,22 +1,19 @@
 import React, { useState } from "react";
+import Header from "./header.jsx";
+import TaskInput from "./taskInput.jsx";
+import TodoCounter from "./todoCounter.jsx";
 
 //create your first component
 const Home = () => {
-  const [newTodo, setNewTodo] = useState("");
   const [todoList, setTodoList] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [todoCounter, setTodoCounter] = useState(0);
   const [btnHover, setBtnHover] = useState(false);
 
-  const validateTodo = (e) => {
-    if (
-      e.key == "Enter" &&
-      newTodo !== "" &&
-      todoList.indexOf(newTodo.toLowerCase()) == -1
-    ) {
-      setTodoList([...todoList, newTodo]);
+  const addTask = (newTask) => {
+    if (todoList.indexOf(newTask.toLowerCase()) === -1) {
+      setTodoList([...todoList, newTask]);
       setTodoCounter(todoCounter + 1);
-      setNewTodo("");
     }
   };
 
@@ -28,23 +25,11 @@ const Home = () => {
 
   return (
     <div className="text-center h-100">
-      <h1 className="display-2 text-secondary opacity-50">todos</h1>
-      <div className="col-5 mx-auto"></div>
-
+      <Header />
       <div className="col-5 mx-auto">
         <ul className="list-group text-start">
           <li className="list-group-item">
-            <input
-              className="form-control border-0"
-              value={newTodo}
-              placeholder="Enter a new todo"
-              onChange={(e) => {
-                setNewTodo(e.target.value);
-              }}
-              onKeyUp={(e) => {
-                validateTodo(e);
-              }}
-            />
+            <TaskInput onAddTask={addTask} />
           </li>
           {todoList.map((todo, index) => {
             return (
@@ -75,11 +60,7 @@ const Home = () => {
             );
           })}
           <li className="list-group-item text-secondary text-opacity-50 fs-6">
-            <div className="todo-counter">
-              {todoCounter === 0
-                ? "No tasks left"
-                : `${todoCounter} ${todoCounter > 1 ? " tasks " : "task"} left`}
-            </div>
+            <TodoCounter count={todoCounter} />
           </li>
         </ul>
       </div>
