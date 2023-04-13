@@ -1,26 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./header.jsx";
 import TaskInput from "./taskInput.jsx";
 import TodoCounter from "./todoCounter.jsx";
 
 //create your first component
 const Home = () => {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState([{}]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [todoCounter, setTodoCounter] = useState(0);
   const [btnHover, setBtnHover] = useState(false);
 
-  const addTask = (newTask) => {
-    if (todoList.indexOf(newTask.toLowerCase()) === -1) {
-      setTodoList([...todoList, newTask]);
-      setTodoCounter(todoCounter + 1);
+  const getToDos = async () => {
+    const response = await fetch(
+      "https://assets.breatheco.de/apis/fake/todos/user/Jminx42"
+    );
+    const data = await response.json();
+    setTodoList(data);
+  };
+
+  setTimeout(() => {
+    setTodoCounter(todoList.length);
+  }, 100);
+
+  useEffect(() => {
+    getToDos();
+  }, []);
+
+  const addTask = async (newTask) => {
+    if (todoList.findIndex((todo) => todo.label === newTask) === -1) {
+      const newTodoList = [...todoList, { label: newTask, done: false }];
+      setTodoList(newTodoList);
+      setTodoCounter(newTodoList.length);
+      await fetch("https://assets.breatheco.de/apis/fake/todos/user/Jminx42", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newTodoList),
+      });
     }
   };
 
-  const deleteTodo = (index) => {
+  const deleteTodo = async (index) => {
     const newTodoList = todoList.filter((_, i) => i !== index);
     setTodoList(newTodoList);
     setTodoCounter(newTodoList.length);
+    await fetch("https://assets.breatheco.de/apis/fake/todos/user/Jminx42", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newTodoList),
+    });
   };
 
   return (
@@ -41,7 +68,7 @@ const Home = () => {
                 }}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                <span className="flex-grow-1">{todo}</span>
+                <span className="flex-grow-1">{todo.label}</span>
                 {hoveredIndex === index ? (
                   <button
                     className={`btn border-0 text-danger ${
